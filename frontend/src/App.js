@@ -7,6 +7,7 @@ const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
 
 const App = () => {
   const [word, setWord] = useState('');
+  const [images, setImages] = useState([]); //images is a state, setImage s a function used to update the images state value.
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +17,8 @@ const App = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setImages([data, ...images]); // update images state, data will be added to the beginning of the array
+        console.log(images);
       })
       .catch((err) => {
         console.log(err);

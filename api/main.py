@@ -2,6 +2,7 @@ import os
 import requests
 from flask import Flask, request
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 
 load_dotenv(dotenv_path="./.env.local")
@@ -16,6 +17,7 @@ if not UNSPLASH_KEY:
 
 # new isinstance of Flask
 app = Flask(__name__)
+CORS(app)
 
 # degun mode is on
 app.config["DEBUG"] = DEGUB

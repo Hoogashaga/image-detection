@@ -6,7 +6,7 @@ const Welcome = () => (
     <h1>Image Detection</h1>
     <p>This is an applications for API test.</p>
     <p>
-      <Button bsStyle="primary" href="https://unsplash.com" target="_blank">
+      <Button variant="primary" href="https://unsplash.com" target="_blank">
         Learn more
       </Button>
     </p>

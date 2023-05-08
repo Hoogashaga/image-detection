@@ -3,26 +3,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Search from './components/Search';
 import ImageCard from './components/imageCard';
-import { Container, Row, Col } from 'react-bootstrap';
 import Welcome from './components/Welcome';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5050';
 
 const App = () => {
   const [word, setWord] = useState('');
-  const [images, setImages] = useState([]); //images is a state, setImage s a function used to update the images state value.
+  const [images, setImages] = useState([]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     fetch(`${API_URL}/new-image?query=${word}`)
       .then((res) => res.json())
       .then((data) => {
-        setImages([{ ...data, title: word }, ...images]); // update images state, data will be added to the beginning of the array
+        setImages([{ ...data, title: word }, ...images]);
       })
       .catch((err) => {
         console.log(err);
       });
-    setWord(''); // to clear search after processed
+    setWord('');
   };
 
   const handleDeleteImage = (id) => {
@@ -30,14 +30,14 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <Header title="Image Detection" />
+    <div>
+      <Header title="Images Detection" />
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit} />
       <Container className="mt-4">
         {images.length ? (
           <Row xs={1} md={2} lg={3}>
             {images.map((image, i) => (
-              <Col key={i} className="pb-4">
+              <Col key={i} className="pb-3">
                 <ImageCard image={image} deleteImage={handleDeleteImage} />
               </Col>
             ))}
